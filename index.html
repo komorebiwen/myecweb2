@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>卓蘭 · 風土傳承 | 沉浸式客庄水果體驗</title>
+    <!-- SEO 優化 -->
+    <meta name="description" content="卓蘭水果之鄉，結合客庄精神與現代科技。精品冷鏈直送，解決網購疑慮，讓每一份鮮甜都帶有土地的溫度。">
+    
+    <!-- 引入 Tailwind CSS & Google Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- 引入 Lucide 圖標 -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --brand-primary: #D97706; /* 柿子橘 */
+            --brand-dark: #292524;    /* 石頭黑 */
+            --brand-light: #F5F5F4;   /* 質感米 */
+        }
+
+        h1, h2, h3 { font-family: 'Noto Serif TC', serif; }
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: var(--brand-light); }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* 特殊文字漸層 */
+        .text-gradient {
+            background: linear-gradient(135deg, #D97706 0%, #92400E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 產品卡片懸停效果 */
+        .product-hover:hover .product-img { transform: scale(1.05); }
+        .product-img { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+
+        /* 自定義捲動條 */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #d4d4d4; border-radius: 10px; }
+    </style>
+</head>
+<body class="selection:bg-orange-100">
+
+    <!-- 1. 導航 (微透明效果) -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="mainNav">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center text-white font-bold">卓</div>
+                <span class="text-xl font-bold tracking-tighter text-stone-800">卓蘭 · 風土商城</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-stone-600">
+                <a href="#about" class="hover:text-orange-600 transition">土地故事</a>
+                <a href="#service" class="hover:text-orange-600 transition">服務流程</a>
+                <a href="#products" class="hover:text-orange-600 transition">精品選物</a>
+                <a href="#adoption" class="hover:text-orange-600 transition">果樹認養</a>
+                <a href="#checkout" class="bg-stone-800 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition shadow-lg">立即行動</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. 首屏 (Hero - 高美感設計) -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1542332213-9b5a5a3fab35?auto=format&fit=crop&q=80&w=1920" alt="卓蘭果園" class="w-full h-full object-cover opacity-80">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-stone-50/20 to-stone-50"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-6">
+            <p class="text-orange-700 font-bold tracking-[0.3em] mb-4 animate__animated animate__fadeIn">TERROIR OF ZHUOLAN</p>
+            <h1 class="text-5xl md:text-8xl font-bold text-stone-900 mb-8 leading-tight">
+                將每一份鮮甜<br><span class="text-gradient">歸還給土地</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-stone-600 text-lg md:text-xl mb-12 font-light">
+                透過 RAG 數據敘事與精品冷鏈技術，我們重新定義了產地直送的尊榮感。這不僅是交易，更是一次對客庄文化的溫暖認同。
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#products" class="group bg-stone-900 text-white px-10 py-5 rounded-full flex items-center justify-center gap-3 hover:bg-orange-600 transition shadow-2xl">
+                    品嚐當季鮮甜 <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- 捲動提示 -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <i data-lucide="chevron-down" class="text-stone-400"></i>
+        </div>
+    </header>
+
+    <!-- 3. 故事策展 (About) -->
+    <section id="about" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-20 items-center">
+            <div class="reveal">
+                <div class="inline-block px-4 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-bold mb-6">文化 x 轉型</div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-8 text-stone-900 leading-snug">
+                    為什麼卓蘭的水果<br>值得被您珍藏？
+                </h2>
+                <p class="text-stone-500 leading-loose mb-8 text-lg">
+                    在卓蘭，我們擁有 89.2% 的客庄人口，這代表了每一串葡萄背後都有著百年傳承的勤奮基因。我們捨棄了大型電商的削價競爭，轉而專注於「文化溢價」與「數位透明化」。
+                </p>
+                <div class="grid grid-cols-2 gap-8">
+                    <div>
+                        <div class="text-3xl font-bold text-stone-800 mb-2">89%</div>
+                        <div class="text-sm text-stone-400">客庄人口深度連結</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-stone-800 mb-2">5°C</div>
+                        <div class="text-sm text-stone-400">全程精準冷鏈控制</div>
+                    </div>
+                </div>
+            </div>
+            <div class="relative reveal delay-200">
+                <div class="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1596333522248-10146b329431?auto=format&fit=crop&q=80&w=800" alt="精品葡萄" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute -bottom-10 -left-10 bg-white p-8 rounded-3xl shadow-xl hidden lg:block border border-stone-100">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-green-600">
+                            <i data-lucide="shield-check"></i>
+                        </div>
+                        <span class="font-bold text-stone-800">品質保證制度</span>
+                    </div>
+                    <p class="text-xs text-stone-400 w-48 leading-relaxed">我們採用壞果拍照即賠機制，解決您 65% 的購買疑慮。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 服務設計流程 (Service Flow) -->
+    <section id="service" class="py-32 bg-stone-900 text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-24 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">從土地到餐桌的精品旅程</h2>
+                <p class="text-stone-400 max-w-xl mx-auto">我們優化了數位基礎設施，讓繁瑣的物流透明化，降低您的決策疲勞。</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-12">
+                <!-- 步驟 1 -->
+                <div class="reveal delay-100">
+                    <div class="text-orange-500 text-6xl font-serif mb-6 opacity-30">01</div>
+                    <h3 class="text-xl font-bold mb-4">文化故事導讀</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed">透過 RAG 系統，讓您在瀏覽時深度認識卓蘭先民開墾的歷史故事，建立情感連結。</p>
+                </div>
+                <!-- 步驟 2 -->
+                <div class="reveal delay-200">
+                    <div class="text-orange-500 text-6xl font-serif mb-6 opacity-30">02</div>
+                    <h3 class="text-xl font-bold mb-4">精品包材防護</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed">採用多層緩衝抗壓結構，解決生鮮水果在物流途中「怕撞壞」的核心痛點。</p>
+                </div>
+                <!-- 步驟 3 -->
+                <div class="reveal delay-300">
+                    <div class="text-orange-500 text-6xl font-serif mb-6 opacity-30">03</div>
+                    <h3 class="text-xl font-bold mb-4">5度冷鏈直送</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed">從產地預冷到黑貓宅配，全程維持恆溫，鎖住每一顆果實最鮮甜的瞬間。</p>
+                </div>
+                <!-- 步驟 4 -->
+                <div class="reveal delay-400">
+                    <div class="text-orange-500 text-6xl font-serif mb-6 opacity-30">04</div>
+                    <h3 class="text-xl font-bold mb-4">數位採果護照</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed">下單後自動獲得數位護照，未來造訪卓蘭實體農場可解鎖隱藏版福利。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 精品選物區 (Products) -->
+    <section id="products" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-20 reveal">
+            <div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-stone-900">本季 · 限量預購</h2>
+                <p class="text-stone-400">營收最大化專區：嚴選卓蘭最高等級水果</p>
+            </div>
+            <div class="flex gap-4 mt-8 md:mt-0">
+                <button class="p-4 rounded-full border border-stone-200 hover:bg-stone-100 transition"><i data-lucide="chevron-left"></i></button>
+                <button class="p-4 rounded-full border border-stone-200 hover:bg-stone-100 transition"><i data-lucide="chevron-right"></i></button>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <!-- 產品 1 -->
+            <div class="product-hover reveal delay-100 group">
+                <div class="aspect-square rounded-[2rem] overflow-hidden bg-stone-200 mb-8 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&q=80&w=800" alt="精品葡萄" class="product-img w-full h-full object-cover">
+                </div>
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-2xl font-bold text-stone-800">卓蘭精品巨峰葡萄</h3>
+                        <p class="text-sm text-stone-400">規格：2kg 精品禮盒裝</p>
+                    </div>
+                    <span class="text-orange-600 font-bold text-xl">NT$ 720</span>
+                </div>
+                <button onclick="openCheckout('卓蘭精品巨峰葡萄', 720)" class="w-full py-4 rounded-2xl bg-white border-2 border-stone-900 text-stone-900 font-bold hover:bg-stone-900 hover:text-white transition shadow-sm">
+                    支持在地小農
+                </button>
+            </div>
+
+            <!-- 產品 2 (風土箱) -->
+            <div class="product-hover reveal delay-200 group">
+                <div class="aspect-square rounded-[2rem] overflow-hidden bg-stone-200 mb-8 shadow-sm relative">
+                    <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&q=80&w=800" alt="風土箱" class="product-img w-full h-full object-cover">
+                    <div class="absolute top-4 right-4 bg-stone-900 text-white px-4 py-1 rounded-full text-xs font-bold">小組推薦</div>
+                </div>
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-2xl font-bold text-stone-800">卓蘭四季 · 風土箱</h3>
+                        <p class="text-sm text-stone-400">內含鮮果組合與客家果乾</p>
+                    </div>
+                    <span class="text-orange-600 font-bold text-xl">NT$ 1,680</span>
+                </div>
+                <button onclick="openCheckout('卓蘭四季 · 風土箱', 1680)" class="w-full py-4 rounded-2xl bg-stone-900 text-white font-bold hover:bg-orange-600 transition shadow-xl">
+                    認購風土情懷
+                </button>
+            </div>
+
+            <!-- 產品 3 (認養 - O2O 核心) -->
+            <div id="adoption" class="reveal delay-300">
+                <div class="h-full p-10 rounded-[2.5rem] bg-orange-50 border-2 border-orange-100 flex flex-col justify-between">
+                    <div>
+                        <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-3xl mb-8 shadow-sm">🌳</div>
+                        <h3 class="text-3xl font-bold text-stone-900 mb-4">線上果樹認養計畫</h3>
+                        <p class="text-stone-500 leading-relaxed mb-10">
+                            這是一個「預售承諾」機制。認養一棵屬於您的卓蘭水梨樹，我們會為您記錄生長軌跡。產季時優先配送，並附贈一張實體採果護照，降低您從「線上轉線下」的交通成本與決策阻力。
+                        </p>
+                    </div>
+                    <button onclick="openCheckout('線上果樹認養計畫', 1200)" class="w-full py-5 bg-orange-600 text-white rounded-2xl font-bold hover:bg-orange-700 transition shadow-2xl">
+                        參與認養 · 立即行動 (NT$ 1,200)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 極簡結帳流程 (Checkout Drawer) -->
+    <div id="checkoutOverlay" class="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-500"></div>
+    <div id="checkoutDrawer" class="fixed right-0 top-0 h-full w-full md:w-[500px] z-[101] bg-white translate-x-full transition-all duration-500 shadow-2xl overflow-y-auto">
+        <div class="p-10">
+            <div class="flex justify-between items-center mb-12">
+                <h2 class="text-3xl font-bold text-stone-900">極簡結帳</h2>
+                <button onclick="closeCheckout()" class="p-2 hover:bg-stone-100 rounded-full transition"><i data-lucide="x"></i></button>
+            </div>
+
+            <form id="orderForm" class="space-y-8">
+                <div>
+                    <label class="block text-xs font-bold text-stone-400 uppercase tracking-widest mb-4">選購內容</label>
+                    <div class="p-6 bg-stone-50 rounded-2xl flex items-center justify-between border border-stone-100">
+                        <span id="drawerProductName" class="font-bold text-stone-800">商品名稱</span>
+                        <span id="drawerProductPrice" class="text-orange-600 font-bold">NT$ 0</span>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <label class="block text-xs font-bold text-stone-400 uppercase tracking-widest mb-2">配送資訊</label>
+                    <input type="text" placeholder="收件人真實姓名" class="w-full p-4 bg-stone-50 rounded-xl outline-none focus:ring-2 focus:ring-orange-600/20 focus:bg-white transition border border-transparent focus:border-orange-600" required>
+                    <input type="tel" placeholder="聯絡電話" class="w-full p-4 bg-stone-50 rounded-xl outline-none focus:ring-2 focus:ring-orange-600/20 focus:bg-white transition border border-transparent focus:border-orange-600" required>
+                    <input type="text" placeholder="完整收件地址 (冷鏈物流)" class="w-full p-4 bg-stone-50 rounded-xl outline-none focus:ring-2 focus:ring-orange-600/20 focus:bg-white transition border border-transparent focus:border-orange-600" required>
+                </div>
+
+                <div class="pt-8 space-y-4">
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="text-stone-400">冷鏈運費 (促銷期)</span>
+                        <span class="text-green-600 font-bold">免運費</span>
+                    </div>
+                    <div class="flex justify-between items-center text-2xl font-bold text-stone-900">
+                        <span>總計</span>
+                        <span id="drawerTotal">NT$ 0</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-5 bg-stone-900 text-white rounded-2xl font-bold text-lg hover:bg-orange-600 transition shadow-2xl flex items-center justify-center gap-3">
+                    確認訂購 <i data-lucide="check-circle"></i>
+                </button>
+                <p class="text-center text-xs text-stone-400">點擊即代表接受我們的「壞果拍照即退款」服務協議</p>
+            </form>
+
+            <div id="successPanel" class="hidden text-center py-20">
+                <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-8 text-4xl">✓</div>
+                <h3 class="text-3xl font-bold mb-4">預購成功！</h3>
+                <p class="text-stone-500 mb-10 leading-relaxed">我們已收到您的風土承諾。請加入卓蘭好客商城 LINE OA，領取您的數位採果護照。</p>
+                <button onclick="closeCheckout()" class="w-full py-4 bg-stone-100 text-stone-800 rounded-2xl font-bold">返回首頁</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. 頁腳 (Footer) -->
+    <footer class="py-20 px-6 bg-stone-50 border-t border-stone-200">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-2 opacity-50">
+                <div class="w-6 h-6 bg-stone-800 rounded-full flex items-center justify-center text-white text-[10px] font-bold">卓</div>
+                <span class="text-sm font-bold tracking-tighter text-stone-800">卓蘭 · 風土商城</span>
+            </div>
+            <div class="text-stone-400 text-xs tracking-widest uppercase">
+                Designed for the EC-PBL 2026 Project Group 10
+            </div>
+            <div class="flex gap-6">
+                <a href="#" class="text-stone-400 hover:text-stone-800 transition"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                <a href="#" class="text-stone-400 hover:text-stone-800 transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                <a href="#" class="text-stone-400 hover:text-stone-800 transition"><i data-lucide="message-circle" class="w-5 h-5"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 初始化 Lucide 圖標
+        lucide.createIcons();
+
+        // 滾動導覽列效果
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-white/95', 'shadow-sm', 'h-16');
+                nav.classList.remove('h-20');
+            } else {
+                nav.classList.remove('bg-white/95', 'shadow-sm', 'h-16');
+                nav.classList.add('h-20');
+            }
+        });
+
+        // 揭示動畫 (Reveal on Scroll)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // 結帳側欄邏輯
+        const overlay = document.getElementById('checkoutOverlay');
+        const drawer = document.getElementById('checkoutDrawer');
+        const drawerName = document.getElementById('drawerProductName');
+        const drawerPrice = document.getElementById('drawerProductPrice');
+        const drawerTotal = document.getElementById('drawerTotal');
+
+        function openCheckout(name, price) {
+            drawerName.innerText = name;
+            drawerPrice.innerText = `NT$ ${price.toLocaleString()}`;
+            drawerTotal.innerText = `NT$ ${price.toLocaleString()}`;
+            
+            overlay.classList.add('opacity-100', 'pointer-events-auto');
+            drawer.classList.remove('translate-x-full');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCheckout() {
+            overlay.classList.remove('opacity-100', 'pointer-events-auto');
+            drawer.classList.add('translate-x-full');
+            document.body.style.overflow = 'auto';
+            setTimeout(() => {
+                document.getElementById('orderForm').classList.remove('hidden');
+                document.getElementById('successPanel').classList.add('hidden');
+            }, 500);
+        }
+
+        overlay.addEventListener('click', closeCheckout);
+
+        // 表單提交模擬
+        document.getElementById('orderForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '正在處理風土承諾...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                document.getElementById('orderForm').classList.add('hidden');
+                document.getElementById('successPanel').classList.remove('hidden');
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
